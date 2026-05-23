@@ -1,17 +1,18 @@
-
 import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+from pathlib import Path
 from scipy.sparse import hstack
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.tree import DecisionTreeClassifier
 
 # --- Define paths for loading saved artifacts --- 
 # Assuming model and encoders are in the same directory as app.py for Streamlit Cloud deployment
-model_load_path = 'best_decision_tree_model.joblib'
-label_encoder_load_path = 'label_encoder.joblib'
-one_hot_encoder_load_path = 'one_hot_encoder.joblib'
+BASE_DIR = Path(__file__).resolve().parent
+model_load_path = BASE_DIR / 'best_decision_tree_model.joblib'
+label_encoder_load_path = BASE_DIR / 'label_encoder.joblib'
+one_hot_encoder_load_path = BASE_DIR / 'one_hot_encoder.joblib'
 
 # --- Global lists for consistent preprocessing (derived from training data) ---
 # These are hardcoded based on the analysis performed in the notebook
